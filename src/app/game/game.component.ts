@@ -9,8 +9,9 @@ import { Grid } from '../grid';
 export class GameComponent implements OnInit {
   grid: Grid = {
     columns: [
-      ['foo', 'bar', 'red'],
-      ['fuck', 'shit', 'blue']
+      ['Individuals', 'hailing', 'on the phone'],
+      ['Groups', 'booking', 'in the street'],
+      ['Companies', 'scheduling', 'online']
     ]
   };
 
