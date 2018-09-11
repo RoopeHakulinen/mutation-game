@@ -1,0 +1,26 @@
+.grid {
+  margin-bottom: 20px;
+
+  .word {
+    padding: 10px;
+    border: 1px solid black;
+    &.selected {
+      background-color: lightblue;
+    }
+  }
+
+  .column:first-child {
+    .word.selected {
+      background-color: green;
+    }
+  }
+}
+
+.count-container {
+  .count {
+    padding: 20px;
+    text-align: center;
+    border: 1px solid black;
+    font-size: 40px;
+  }
+}

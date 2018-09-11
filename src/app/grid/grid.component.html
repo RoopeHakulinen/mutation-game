@@ -1,0 +1,41 @@
+<div class="grid" fxLayout="row" fxLayoutAlign="center center">
+  <div class="column" *ngFor="let column of grid.columns; let columnIndex = index" fxLayout="column">
+    <div fxFlex class="header">{{columnIndex + 1}}</div>
+    <div
+      class="word"
+      fxFlex
+      *ngFor="let word of column; let rowIndex = index"
+      contenteditable="true"
+      [class.selected]="(!currentMutation && columnIndex === 0) || isWordSelected(word, rowIndex)"
+      [(ngModel)]="column[rowIndex]">
+    </div>
+  </div>
+</div>
+<div class="current-mutation" *ngIf="currentMutation">
+  Current mutation: <b>{{currentMutation?.join(' ')}}</b>
+</div>
+<button (click)="addRow()">Add row</button>
+<button (click)="addColumn()">Add column</button>
+<button (click)="mutate()" [disabled]="!canMutate()">Mutate</button>
+<div class="count-container">
+  <p>Available mutations:</p>
+  <div class="count">{{possibleMutationCount()}}</div>
+</div>
+<div class="count-container">
+  <p>Variation:</p>
+  <div class="count">
+    <span (click)="decreaseVariation()" *ngIf="variation > 1">-</span>
+    {{variation}}
+    <span (click)="increaseVariation()" *ngIf="canIncreaseVariation()">+</span>
+  </div>
+</div>
+<div class="liked-mutations" *ngIf="currentMutation">
+  <button *ngIf="currentMutation && !alreadyInLikedMutations(currentMutation)" (click)="likeMutation()">
+    Like this mutation
+  </button>
+  <h3>Liked mutations</h3>
+  <div *ngIf="!likedMutations.length">No liked mutations yet..</div>
+  <div *ngFor="let mutation of likedMutations; let i = index">{{i + 1}}: <b>{{mutation.join(' ')}}</b>
+    <button (click)="currentMutation = mutation">Reselect</button>
+  </div>
+</div>
