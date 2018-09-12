@@ -1,0 +1,17 @@
+.grid {
+  margin-bottom: 20px;
+
+  .word {
+    padding: 10px;
+    border: 1px solid black;
+    &.selected {
+      background-color: lightblue;
+    }
+  }
+
+  .column:first-child {
+    .word.selected {
+      background-color: green;
+    }
+  }
+}

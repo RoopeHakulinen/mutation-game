@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Grid } from '../grid';
 
 @Component({
@@ -7,7 +7,13 @@ import { Grid } from '../grid';
   styleUrls: ['./grid.component.scss']
 })
 export class GridComponent implements OnInit {
-  @Input() grid: Grid;
+  grid: Grid = {
+    columns: [
+      ['Individuals', 'hailing', 'on the phone'],
+      ['Groups', 'booking', 'in the street'],
+      ['Companies', 'scheduling', 'online']
+    ]
+  };
 
   currentMutation: string[];
   likedMutations: string[][] = [];

@@ -1,0 +1,39 @@
+<div class="grid" fxLayout="row" fxLayoutAlign="center center">
+  <div class="column" *ngFor="let column of grid.columns; let columnIndex = index" fxLayout="column">
+    <div fxFlex class="header">{{columnIndex + 1}}</div>
+    <div
+      class="word"
+      fxFlex
+      *ngFor="let word of column; let rowIndex = index"
+      [class.selected]="!isEditing && word.selected"
+      (click)="selectWord(columnIndex, rowIndex)">
+      <input
+        matInput
+        placeholder="Word"
+        [(ngModel)]="column[rowIndex].word"
+        *ngIf="isEditing"/>
+      <span *ngIf="!isEditing">{{word.word}}</span>
+    </div>
+  </div>
+</div>
+
+<div fxLayout fxLayoutGap="40px">
+  <button mat-flat-button (click)="addColumn()" *ngIf="isEditing" fxFlex>
+    Add column
+  </button>
+  <button mat-flat-button (click)="addRow()" *ngIf="isEditing" fxFlex>
+    Add row
+  </button>
+  <button mat-flat-button color="warn" (click)="reset()" *ngIf="isEditing" fxFlex>
+    Reset
+  </button>
+</div>
+<mat-slide-toggle
+  style="margin-top: 16px;"
+  [checked]="isEditing"
+  (change)="isEditing = !isEditing">
+  Edit mode
+</mat-slide-toggle>
+<div class="current-mutation" *ngIf="!isEditing">
+  Current mutation: <br/><b>{{getSelectedWords().join(' ')}}</b>
+</div>
