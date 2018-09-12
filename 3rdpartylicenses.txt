@@ -260,15 +260,15 @@ If the Work includes a "NOTICE" text file as part of its distribution, then any 
 
 END OF TERMS AND CONDITIONS
 
-ng-contenteditable@2.0.2
-MIT
-MIT
-
 @angular/platform-browser@6.1.7
 MIT
 MIT
 
 @angular/common@6.1.7
+MIT
+MIT
+
+ng-contenteditable@2.0.2
 MIT
 MIT
 
