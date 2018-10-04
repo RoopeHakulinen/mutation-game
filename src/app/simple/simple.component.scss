@@ -1,3 +1,9 @@
+.instructions {
+  ul li {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+}
 .grid {
   margin-bottom: 20px;
 
@@ -6,6 +12,10 @@
     border: 1px solid black;
     &.selected {
       background-color: lightblue;
+    }
+
+    span {
+      cursor: pointer;
     }
   }
 

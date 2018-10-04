@@ -1,3 +1,31 @@
+<mat-slide-toggle
+  [checked]="toggles.showInstructions"
+  (change)="toggles.showInstructions = !toggles.showInstructions">
+  Show instructions
+</mat-slide-toggle>
+<div *ngIf="toggles.showInstructions" class="instructions">
+  <ul>
+    <li>Craft a Description: pick a meaningful string of 5 to 8 components that describe in one sentence the object to
+      mutate, and write these in column 1. A component can contain more than one word when appropriate, e.g. ”for a
+      short ride”, although one word is best.
+    </li>
+    <li>Generate Alternative Components: generate a grid of alternative components, with 2 to 4 alternatives for each of
+      the components in the initial description sentence.First add columns, write 5 or 6 alternative compenents for each
+      row, shrink back to your preferred 2 to 4, and then remove unnecessary columns when you’re done. A square grid is
+      best (i.e. without empty boxes)
+    </li>
+    <li>Pick Mutations & Generate Ideas: a mutation is a sentence arrived at by selecting 1 component per row. Each
+      mutation gets a unique number, made by listing the column numbers of the components it contains (nb: the mutation
+      number of the initial description is a long string of “1”). Go through c. 50 mutations, spending 10 to 20 seconds
+      per mutation, to trigger creative ideas. You can have more than one idea per mutation, and many mutations can give
+      rise to the same idea. Move on to a next mutation if drawing blank at any time.
+    </li>
+    <li>Package your Best Ideas: summarize your best ideas in 2 to 4 words each, to convey them crisply and clearly. Add
+      the unique mutation number of the mutation that triggered the idea for future recollection.
+    </li>
+  </ul>
+</div>
+
 <div class="grid" fxLayout="row" fxLayoutAlign="center center">
   <div class="column" *ngFor="let column of grid.columns; let columnIndex = index" fxLayout="column">
     <div fxFlex class="header">{{columnIndex + 1}}</div>
@@ -5,35 +33,56 @@
       class="word"
       fxFlex
       *ngFor="let word of column; let rowIndex = index"
-      [class.selected]="!isEditing && word.selected"
-      (click)="selectWord(columnIndex, rowIndex)">
+      [class.selected]="!toggles.isEditing && word.selected">
       <input
         matInput
         placeholder="Word"
         [(ngModel)]="column[rowIndex].word"
-        *ngIf="isEditing"/>
-      <span *ngIf="!isEditing">{{word.word}}</span>
+        *ngIf="toggles.isEditing"/>
+      <span
+        *ngIf="!toggles.isEditing"
+        (click)="selectWord(columnIndex, rowIndex)">{{word.word}}</span>
     </div>
   </div>
 </div>
 
-<div fxLayout fxLayoutGap="40px">
-  <button mat-flat-button (click)="addColumn()" *ngIf="isEditing" fxFlex>
+<div fxLayout fxLayoutGap="10px">
+  <button mat-flat-button (click)="addColumn()" *ngIf="toggles.isEditing" fxFlex>
     Add column
   </button>
-  <button mat-flat-button (click)="addRow()" *ngIf="isEditing" fxFlex>
+  <button
+    mat-flat-button
+    (click)="deleteColumn()"
+    [disabled]="grid.columns.length === 1"
+    *ngIf="toggles.isEditing"
+    fxFlex>
+    Delete column
+  </button>
+  <button mat-flat-button (click)="addRow()" *ngIf="toggles.isEditing" fxFlex>
     Add row
   </button>
-  <button mat-flat-button color="warn" (click)="reset()" *ngIf="isEditing" fxFlex>
+  <button
+    mat-flat-button
+    (click)="deleteRow()"
+    [disabled]="grid.columns[0].length === 1"
+    *ngIf="toggles.isEditing"
+    fxFlex>
+    Delete row
+  </button>
+  <button mat-flat-button color="warn" (click)="reset()" *ngIf="toggles.isEditing" fxFlex>
     Reset
   </button>
 </div>
+
 <mat-slide-toggle
   style="margin-top: 16px;"
-  [checked]="isEditing"
-  (change)="isEditing = !isEditing">
+  [checked]="toggles.isEditing"
+  (change)="toggles.isEditing = !toggles.isEditing">
   Edit mode
 </mat-slide-toggle>
-<div class="current-mutation" *ngIf="!isEditing">
-  Current mutation: <br/><b>{{getSelectedWords().join(' ')}}</b>
+<div class="current-mutation" *ngIf="!toggles.isEditing">
+  Current mutation: <br/>
+  <b>{{getSelectedWords().join(' | ')}}</b>
+  <br/>
+  <b>{{getSelectedIndexes().join(' ')}}</b>
 </div>

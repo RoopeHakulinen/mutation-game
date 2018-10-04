@@ -7,12 +7,17 @@ import { GridWithStatus } from '../grid';
   styleUrls: ['./simple.component.scss']
 })
 export class SimpleComponent implements OnInit {
+  toggles = {
+    showInstructions: false,
+    isEditing: true
+  };
+
   grid: GridWithStatus = {
     columns: [
       [
-        { word: 'Individuals', selected: false },
-        { word: 'hailing', selected: false },
-        { word: 'on the phone', selected: false }
+        { word: 'Individuals', selected: true },
+        { word: 'hailing', selected: true },
+        { word: 'on the phone', selected: true }
       ],
       [
         { word: 'Groups', selected: false },
@@ -26,7 +31,6 @@ export class SimpleComponent implements OnInit {
       ]
     ]
   };
-  isEditing = true;
 
   constructor() {
   }
@@ -42,20 +46,42 @@ export class SimpleComponent implements OnInit {
     }));
   }
 
-  getSelectedWords() {
+  getSelected() {
     return this.transpose(this.grid.columns)
       .map(row => row
+        .map((item, index) => ({ word: item.word, index, selected: item.selected }))
         .filter(item => item.selected)
-        .map(item => item.word)
-      ).map(items => items[0]).filter(word => word && word.length);
+      ).map(items => items[0]).filter(item => item && item.word && item.word.length);
+  }
+
+  getSelectedWords() {
+    return this.getSelected().map(item => item.word);
+  }
+
+  getSelectedIndexes() {
+    return this.getSelected().map(item => item.index + 1);
   }
 
   addRow() {
-    this.grid.columns.forEach(column => column.push({ word: '', selected: false }));
+    this.grid.columns.forEach((column, index) => column.push({ word: '', selected: index === 0 }));
   }
 
   addColumn() {
-    this.grid.columns.push(Array(this.grid.columns[0].length).fill(''));
+    this.grid.columns.push(Array(this.grid.columns[0].length).fill('').map(() => ({ word: '', selected: false })));
+  }
+
+  removeColumn() {
+    if (this.grid.columns.length === 1) {
+      return;
+    }
+    this.grid.columns.splice(-1, 1);
+  }
+
+  removeRow() {
+    if (this.grid.columns[0].length === 1) {
+      return;
+    }
+    this.grid.columns.forEach(column => column.splice(-1, 1));
   }
 
   reset() {
