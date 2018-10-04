@@ -8,7 +8,6 @@
   margin-bottom: 20px;
 
   .word {
-    padding: 10px;
     border: 1px solid black;
     &.selected {
       background-color: lightblue;
@@ -16,6 +15,12 @@
 
     span {
       cursor: pointer;
+      padding: 10px;
+      display: inline-block;
+    }
+
+    input {
+      margin: 10px;
     }
   }
 
