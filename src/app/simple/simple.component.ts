@@ -70,14 +70,14 @@ export class SimpleComponent implements OnInit {
     this.grid.columns.push(Array(this.grid.columns[0].length).fill('').map(() => ({ word: '', selected: false })));
   }
 
-  removeColumn() {
+  deleteColumn() {
     if (this.grid.columns.length === 1) {
       return;
     }
     this.grid.columns.splice(-1, 1);
   }
 
-  removeRow() {
+  deleteRow() {
     if (this.grid.columns[0].length === 1) {
       return;
     }
