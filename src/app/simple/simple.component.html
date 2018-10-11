@@ -37,6 +37,7 @@
       <input
         matInput
         placeholder="Word"
+        size="8"
         [(ngModel)]="column[rowIndex].word"
         *ngIf="toggles.isEditing"/>
       <span
@@ -46,30 +47,33 @@
   </div>
 </div>
 
-<div fxLayout fxLayoutGap="10px">
-  <button mat-flat-button (click)="addColumn()" *ngIf="toggles.isEditing" fxFlex>
+<div
+  fxLayout="row wrap"
+  fxLayout.xs="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+  style="margin: 10px;">
+  <button mat-flat-button (click)="addColumn()" *ngIf="toggles.isEditing">
     Add column
   </button>
   <button
     mat-flat-button
     (click)="deleteColumn()"
     [disabled]="grid.columns.length === 1"
-    *ngIf="toggles.isEditing"
-    fxFlex>
+    *ngIf="toggles.isEditing">
     Delete column
   </button>
-  <button mat-flat-button (click)="addRow()" *ngIf="toggles.isEditing" fxFlex>
+  <button mat-flat-button (click)="addRow()" *ngIf="toggles.isEditing">
     Add row
   </button>
   <button
     mat-flat-button
     (click)="deleteRow()"
     [disabled]="grid.columns[0].length === 1"
-    *ngIf="toggles.isEditing"
-    fxFlex>
+    *ngIf="toggles.isEditing">
     Delete row
   </button>
-  <button mat-flat-button color="warn" (click)="reset()" *ngIf="toggles.isEditing" fxFlex>
+  <button mat-flat-button color="warn" (click)="reset()" *ngIf="toggles.isEditing">
     Reset
   </button>
 </div>
