@@ -4,29 +4,37 @@
     text-align: left;
   }
 }
-.grid {
-  margin-bottom: 20px;
 
-  .word {
-    border: 1px solid black;
-    &.selected {
-      background-color: lightblue;
+.grid-container {
+  display: flex;
+  justify-content: center;
+  padding: 0 10px;
+  .grid {
+    margin-bottom: 20px;
+    max-width: 100%;
+    overflow-x: auto;
+
+    .word {
+      border: 1px solid black;
+      &.selected {
+        background-color: lightblue;
+      }
+
+      span {
+        cursor: pointer;
+        padding: 10px;
+        display: inline-block;
+      }
+
+      input {
+        margin: 10px;
+      }
     }
 
-    span {
-      cursor: pointer;
-      padding: 10px;
-      display: inline-block;
-    }
-
-    input {
-      margin: 10px;
-    }
-  }
-
-  .column:first-child {
-    .word.selected {
-      background-color: green;
+    .column:first-child {
+      .word.selected {
+        background-color: green;
+      }
     }
   }
 }

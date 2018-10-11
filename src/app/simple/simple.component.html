@@ -26,23 +26,25 @@
   </ul>
 </div>
 
-<div class="grid" fxLayout="row" fxLayoutAlign="center center">
-  <div class="column" *ngFor="let column of grid.columns; let columnIndex = index" fxLayout="column">
-    <div fxFlex class="header">{{columnIndex + 1}}</div>
-    <div
-      class="word"
-      fxFlex
-      *ngFor="let word of column; let rowIndex = index"
-      [class.selected]="!toggles.isEditing && word.selected">
-      <input
-        matInput
-        placeholder="Word"
-        size="8"
-        [(ngModel)]="column[rowIndex].word"
-        *ngIf="toggles.isEditing"/>
-      <span
-        *ngIf="!toggles.isEditing"
-        (click)="selectWord(columnIndex, rowIndex)">{{word.word}}</span>
+<div class="grid-container">
+  <div class="grid" fxLayout="row">
+    <div class="column" *ngFor="let column of grid.columns; let columnIndex = index" fxLayout="column">
+      <div fxFlex class="header">{{columnIndex + 1}}</div>
+      <div
+        class="word"
+        fxFlex
+        *ngFor="let word of column; let rowIndex = index"
+        [class.selected]="!toggles.isEditing && word.selected">
+        <input
+          matInput
+          placeholder="Word"
+          size="8"
+          [(ngModel)]="column[rowIndex].word"
+          *ngIf="toggles.isEditing"/>
+        <span
+          *ngIf="!toggles.isEditing"
+          (click)="selectWord(columnIndex, rowIndex)">{{word.word}}</span>
+      </div>
     </div>
   </div>
 </div>
