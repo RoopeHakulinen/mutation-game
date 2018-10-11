@@ -77,12 +77,12 @@
 <mat-slide-toggle
   style="margin-top: 16px;"
   [checked]="toggles.isEditing"
-  (change)="toggles.isEditing = !toggles.isEditing">
+  (change)="toggleEdit()">
   Edit mode
 </mat-slide-toggle>
 <div class="current-mutation" *ngIf="!toggles.isEditing">
   Current mutation: <br/>
   <b>{{getSelectedWords().join(' | ')}}</b>
   <br/>
-  <b>{{getSelectedIndexes().join(' | ')}}</b>
+  <b>{{getSelectedIndexes().join('')}}</b>
 </div>

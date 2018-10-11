@@ -93,6 +93,18 @@ export class SimpleComponent implements OnInit {
     }
   }
 
+  resetSelected() {
+    this.grid.columns.forEach((column, currentColumnIndex) =>
+      column.forEach((item) => {
+        item.selected = currentColumnIndex === 0;
+      }));
+  }
+
+  toggleEdit() {
+    this.toggles.isEditing = !this.toggles.isEditing;
+    this.resetSelected();
+  }
+
   transpose(array: any[]) {
     return array[0].map((col, i) => array.map(column => column[i]));
   }
