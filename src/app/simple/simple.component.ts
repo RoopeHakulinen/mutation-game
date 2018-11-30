@@ -111,6 +111,6 @@ export class SimpleComponent implements OnInit {
 
   getNumberOfCombinations(): number {
     const rows = this.transpose(this.grid.columns);
-    return Math.pow(rows[0].length, rows.length);
+    return rows.reduce((acc, row) => acc * row.length, 1);
   }
 }
