@@ -9,7 +9,7 @@ import { GridWithStatus } from '../grid';
 export class SimpleComponent implements OnInit {
   toggles = {
     showInstructions: false,
-    isEditing: true
+    isEditing: false
   };
 
   grid: GridWithStatus = {
@@ -107,5 +107,10 @@ export class SimpleComponent implements OnInit {
 
   transpose(array: any[]) {
     return array[0].map((col, i) => array.map(column => column[i]));
+  }
+
+  getNumberOfCombinations(): number {
+    const rows = this.transpose(this.grid.columns);
+    return Math.pow(rows[0].length, rows.length);
   }
 }

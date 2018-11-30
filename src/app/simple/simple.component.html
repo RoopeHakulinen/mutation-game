@@ -49,6 +49,10 @@
   </div>
 </div>
 
+<div *ngIf="toggles.isEditing">
+  Combinations: <b>{{getNumberOfCombinations()}}</b>
+</div>
+
 <div
   fxLayout="row wrap"
   fxLayout.xs="column"
