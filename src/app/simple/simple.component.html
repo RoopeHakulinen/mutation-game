@@ -43,7 +43,9 @@
           *ngIf="toggles.isEditing"/>
         <span
           *ngIf="!toggles.isEditing"
-          (click)="selectWord(columnIndex, rowIndex)">{{word.word}}</span>
+          (click)="word.word.length && selectWord(columnIndex, rowIndex)">
+          {{word.word.length ? word.word : '&nbsp;'}}
+        </span>
       </div>
     </div>
   </div>
