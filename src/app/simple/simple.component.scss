@@ -16,14 +16,16 @@
 
     .word {
       border: 1px solid black;
+      height: 50px;
+      cursor: pointer;
       &.selected {
         background-color: lightblue;
       }
 
       span {
-        cursor: pointer;
-        padding: 10px;
         display: inline-block;
+        margin-top: 11px;
+        padding: 4px;
       }
 
       input {

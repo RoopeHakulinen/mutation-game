@@ -32,8 +32,8 @@
       <div fxFlex class="header">{{columnIndex + 1}}</div>
       <div
         class="word"
-        fxFlex
         *ngFor="let word of column; let rowIndex = index"
+        (click)="!toggles.isEditing && word.word.length && selectWord(columnIndex, rowIndex)"
         [class.selected]="!toggles.isEditing && word.selected">
         <input
           matInput
@@ -41,9 +41,7 @@
           size="8"
           [(ngModel)]="column[rowIndex].word"
           *ngIf="toggles.isEditing"/>
-        <span
-          *ngIf="!toggles.isEditing"
-          (click)="word.word.length && selectWord(columnIndex, rowIndex)">
+        <span *ngIf="!toggles.isEditing">
           {{word.word.length ? word.word : '&nbsp;'}}
         </span>
       </div>
