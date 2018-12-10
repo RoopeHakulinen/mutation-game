@@ -27,7 +27,7 @@ export class SimpleComponent implements OnInit {
         { word: 'booking ahead', selected: false },
         { word: 'on the phone', selected: false },
         { word: 'known', selected: false },
-        { word: 'unlicensed', selected: false },
+        { word: 'unlicensed taxis', selected: false },
         { word: 'for a long ride', selected: false }
       ],
       [
