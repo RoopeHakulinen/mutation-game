@@ -20,7 +20,7 @@ const defaultGrid = {
       { word: 'for a long ride', selected: false },
     ],
     [
-      { word: 'companies', selected: false },
+      { word: 'objects', selected: false },
       { word: '', selected: false },
       { word: 'online', selected: false },
       { word: 'approved', selected: false },
