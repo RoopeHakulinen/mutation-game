@@ -1,6 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { GridWithStatus } from '../grid';
 
+const defaultGrid = {
+  columns: [
+    [
+      { word: 'individuals', selected: true },
+      { word: 'hailing', selected: true },
+      { word: 'in the street', selected: true },
+      { word: 'random', selected: true },
+      { word: 'licensed taxis', selected: true },
+      { word: 'for a short ride', selected: true },
+    ],
+    [
+      { word: 'groups', selected: false },
+      { word: 'booking ahead', selected: false },
+      { word: 'on the phone', selected: false },
+      { word: 'known', selected: false },
+      { word: 'unlicensed taxis', selected: false },
+      { word: 'for a long ride', selected: false },
+    ],
+    [
+      { word: 'companies', selected: false },
+      { word: '', selected: false },
+      { word: 'online', selected: false },
+      { word: 'approved', selected: false },
+      { word: 'private drivers', selected: false },
+      { word: '', selected: false },
+    ],
+  ],
+};
+
 function combos(list: string[][], n = 0, result = [], current = []) {
   if (n === list.length) result.push(current);
   else list[n].forEach(item => combos(list, n + 1, result, [...current, item]));
@@ -25,37 +54,10 @@ export class SimpleComponent implements OnInit {
   toggles = {
     showInstructions: false,
     isEditing: false,
-    isAutomaticModeEnabled: false
+    isAutomaticModeEnabled: false,
   };
 
-  grid: GridWithStatus = {
-    columns: [
-      [
-        { word: 'individuals', selected: true },
-        { word: 'hailing', selected: true },
-        { word: 'in the street', selected: true },
-        { word: 'random', selected: true },
-        { word: 'licensed taxis', selected: true },
-        { word: 'for a short ride', selected: true },
-      ],
-      [
-        { word: 'groups', selected: false },
-        { word: 'booking ahead', selected: false },
-        { word: 'on the phone', selected: false },
-        { word: 'known', selected: false },
-        { word: 'unlicensed taxis', selected: false },
-        { word: 'for a long ride', selected: false },
-      ],
-      [
-        { word: 'companies', selected: false },
-        { word: '', selected: false },
-        { word: 'online', selected: false },
-        { word: 'approved', selected: false },
-        { word: 'private drivers', selected: false },
-        { word: '', selected: false },
-      ],
-    ],
-  };
+  grid: GridWithStatus = defaultGrid;
   private randomCombinations: number[][] = [];
 
   constructor() {
@@ -111,12 +113,18 @@ export class SimpleComponent implements OnInit {
     this.grid.columns.forEach(column => column.splice(-1, 1));
   }
 
-  reset() {
+  makeEmpty() {
     if (confirm('Are you sure?')) {
       this.grid.columns.forEach(column => column.forEach(item => {
         item.selected = false;
         item.word = '';
       }));
+    }
+  }
+
+  reset() {
+    if (confirm('Are you sure?')) {
+      this.grid = defaultGrid;
     }
   }
 

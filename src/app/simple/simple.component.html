@@ -82,8 +82,11 @@
     *ngIf="toggles.isEditing">
     Delete row
   </button>
+  <button mat-flat-button color="warn" (click)="makeEmpty()" *ngIf="toggles.isEditing">
+    Empty
+  </button>
   <button mat-flat-button color="warn" (click)="reset()" *ngIf="toggles.isEditing">
-    Reset
+    Restore
   </button>
 </div>
 
