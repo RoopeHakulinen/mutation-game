@@ -14,7 +14,7 @@ function download(filename, text) {
   document.body.removeChild(element);
 }
 
-const defaultGrid = {
+const defaultGrid: GridWithStatus = {
   columns: [
     [
       { word: 'individuals', selected: true },
@@ -202,11 +202,13 @@ export class SimpleComponent implements OnInit {
   }
 
   resetSavedCombinations(): void {
+    // TODO Use this
     this.savedCombinations = [];
   }
 
   exportAsCsv(): void {
-    const csvData = this.savedCombinations.map(combination => `${combination.combinationKey.join('')},${combination.words.join(',')}`).join('\n');
-    download('mutation-game-saved-combinations.csv', csvData);
+    const currentGridAsCsv = this.grid.columns.map((column, index) => `${column.map(item => item.word !== '' ? index + 1 : 'x').join('')},${column.map(item => item.word).join(',')}`).join('\n');
+    const savedRowsAsCsv = this.savedCombinations.map(combination => `${combination.combinationKey.join('')},${combination.words.join(',')}`).join('\n');
+    download('mutation-game-saved-combinations.csv', `${currentGridAsCsv}\n\n${savedRowsAsCsv}`);
   }
 }
