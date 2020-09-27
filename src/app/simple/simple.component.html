@@ -118,6 +118,6 @@
     Review
   </button>
   <div class="combination" *ngFor="let row of savedCombinations">
-    <b>{{row.combinationKey.join('')}}</b> - <b>{{row.words.join(' | ')}}</b>
+    {{row.combinationKey.join('')}} - {{row.words.join(' | ')}}
   </div>
 </div>
