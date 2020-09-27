@@ -47,6 +47,9 @@
       </div>
     </div>
   </div>
+  <div class="generate-button-container" *ngIf="toggles.isAutomaticModeEnabled">
+    <button (click)="pickRandom()" mat-flat-button>Random</button>
+  </div>
 </div>
 
 <div *ngIf="toggles.isEditing">
@@ -90,6 +93,13 @@
   (change)="toggleEdit()">
   Edit mode
 </mat-slide-toggle>
+<br/>
+<mat-slide-toggle
+  [checked]="toggles.isAutomaticModeEnabled"
+  (change)="toggles.isAutomaticModeEnabled = !toggles.isAutomaticModeEnabled">
+  Automatic mode enabled
+</mat-slide-toggle>
+
 <div class="current-mutation" *ngIf="!toggles.isEditing">
   Current mutation: <br/>
   <b>{{getSelectedWords().join(' | ')}}</b>

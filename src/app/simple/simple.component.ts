@@ -1,15 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { GridWithStatus } from '../grid';
 
+function combos(list: string[][], n = 0, result = [], current = []) {
+  if (n === list.length) result.push(current);
+  else list[n].forEach(item => combos(list, n + 1, result, [...current, item]));
+
+  return result;
+}
+
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 @Component({
   selector: 'app-simple',
   templateUrl: './simple.component.html',
-  styleUrls: ['./simple.component.scss']
+  styleUrls: ['./simple.component.scss'],
 })
 export class SimpleComponent implements OnInit {
   toggles = {
     showInstructions: false,
-    isEditing: false
+    isEditing: false,
+    isAutomaticModeEnabled: false
   };
 
   grid: GridWithStatus = {
@@ -28,7 +44,7 @@ export class SimpleComponent implements OnInit {
         { word: 'on the phone', selected: false },
         { word: 'known', selected: false },
         { word: 'unlicensed taxis', selected: false },
-        { word: 'for a long ride', selected: false }
+        { word: 'for a long ride', selected: false },
       ],
       [
         { word: 'companies', selected: false },
@@ -37,14 +53,16 @@ export class SimpleComponent implements OnInit {
         { word: 'approved', selected: false },
         { word: 'private drivers', selected: false },
         { word: '', selected: false },
-      ]
-    ]
+      ],
+    ],
   };
+  private randomCombinations: number[][] = [];
 
   constructor() {
   }
 
   ngOnInit() {
+    this.generateRandomCombinations();
   }
 
   selectWord(columnIndex: number, rowIndex: number) {
@@ -59,7 +77,7 @@ export class SimpleComponent implements OnInit {
     return this.transpose(this.grid.columns)
       .map(row => row
         .map((item, index) => ({ word: item.word, index, selected: item.selected }))
-        .filter(item => item.selected)
+        .filter(item => item.selected),
       ).map(items => items[0]).filter(item => item && item.word && item.word.length);
   }
 
@@ -112,6 +130,7 @@ export class SimpleComponent implements OnInit {
   toggleEdit() {
     this.toggles.isEditing = !this.toggles.isEditing;
     this.resetSelected();
+    this.generateRandomCombinations();
   }
 
   transpose(array: any[]) {
@@ -121,5 +140,20 @@ export class SimpleComponent implements OnInit {
   getNumberOfCombinations(): number {
     const rows = this.transpose(this.grid.columns);
     return rows.reduce((acc, row) => acc * row.length, 1);
+  }
+
+  generateRandomCombinations(): void {
+    this.randomCombinations = shuffle(combos(this.transpose(this.grid.columns).map(row => row.filter(item => item.word !== '').map((_, index) => index))));
+  }
+
+  pickRandom(): void {
+    if (this.randomCombinations.length === 0) {
+      alert('No more combinations available');
+      return;
+    }
+    const row = this.randomCombinations.shift();
+    row.forEach((columnIndex, wordIndex) => {
+      this.selectWord(columnIndex, wordIndex);
+    });
   }
 }
