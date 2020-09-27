@@ -1,6 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { GridWithStatus } from '../grid';
 
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
+
 const defaultGrid = {
   columns: [
     [
@@ -66,6 +79,7 @@ export class SimpleComponent implements OnInit {
 
   ngOnInit() {
     this.loadCurrentGrid();
+    this.generateRandomCombinations();
   }
 
   selectWord(columnIndex: number, rowIndex: number) {
@@ -192,6 +206,7 @@ export class SimpleComponent implements OnInit {
   }
 
   exportAsCsv(): void {
-
+    const csvData = this.savedCombinations.map(combination => `${combination.combinationKey.join('')},${combination.words.join(',')}`).join('\n');
+    download('mutation-game-saved-combinations.csv', csvData);
   }
 }
