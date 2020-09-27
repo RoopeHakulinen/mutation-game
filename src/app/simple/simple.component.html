@@ -109,3 +109,15 @@
   <br/>
   <b>{{getSelectedIndexes().join('')}}</b>
 </div>
+
+<div class="saved-combinations-container">
+  <button mat-flat-button (click)="saveCombination()" *ngIf="!toggles.isEditing" style="margin-right: 10px;">
+    Save
+  </button>
+  <button mat-flat-button color="accent" (click)="exportAsCsv()" *ngIf="!toggles.isEditing">
+    Review
+  </button>
+  <div class="combination" *ngFor="let row of savedCombinations">
+    <b>{{row.combinationKey.join('')}}</b> - <b>{{row.words.join(' | ')}}</b>
+  </div>
+</div>

@@ -59,6 +59,7 @@ export class SimpleComponent implements OnInit {
 
   grid: GridWithStatus = defaultGrid;
   private randomCombinations: number[][] = [];
+  private savedCombinations: { combinationKey: number[]; words: string[] }[] = [];
 
   constructor() {
   }
@@ -175,5 +176,22 @@ export class SimpleComponent implements OnInit {
 
   saveCurrentGrid(): void {
     localStorage.setItem('grid', JSON.stringify(this.grid))
+  }
+
+  saveCombination(): void {
+    const alreadySaved = this.savedCombinations.some(combination => combination.combinationKey.join('') === this.getSelectedIndexes().join(''))
+    if (alreadySaved) {
+      alert('Combination already saved.');
+      return;
+    }
+    this.savedCombinations.push({ combinationKey: this.getSelectedIndexes(), words: this.getSelectedWords() });
+  }
+
+  resetSavedCombinations(): void {
+    this.savedCombinations = [];
+  }
+
+  exportAsCsv(): void {
+
   }
 }
