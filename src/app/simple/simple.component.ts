@@ -173,7 +173,7 @@ export class SimpleComponent implements OnInit {
 
   pickRandom(): void {
     if (this.randomCombinations.length === 0) {
-      alert('No more combinations available');
+      alert('No more mutations available');
       return;
     }
     const row = this.randomCombinations.shift();
@@ -196,7 +196,7 @@ export class SimpleComponent implements OnInit {
   saveCombination(): void {
     const alreadySaved = this.savedCombinations.some(combination => combination.combinationKey.join('') === this.getSelectedIndexes().join(''))
     if (alreadySaved) {
-      alert('Combination already saved.');
+      alert('Mutation already saved.');
       return;
     }
     this.savedCombinations.push({ combinationKey: this.getSelectedIndexes(), words: this.getSelectedWords() });
