@@ -155,6 +155,7 @@ export class SimpleComponent implements OnInit {
     this.resetSelected();
     this.generateRandomCombinations();
     this.saveCurrentGrid();
+    this.resetSavedCombinations();
   }
 
   transpose(array: any[]) {
@@ -202,7 +203,6 @@ export class SimpleComponent implements OnInit {
   }
 
   resetSavedCombinations(): void {
-    // TODO Use this
     this.savedCombinations = [];
   }
 
