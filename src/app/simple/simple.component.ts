@@ -62,7 +62,7 @@ export class SimpleComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.generateRandomCombinations();
+    this.loadCurrentGrid();
   }
 
   selectWord(columnIndex: number, rowIndex: number) {
@@ -131,6 +131,7 @@ export class SimpleComponent implements OnInit {
     this.toggles.isEditing = !this.toggles.isEditing;
     this.resetSelected();
     this.generateRandomCombinations();
+    this.saveCurrentGrid();
   }
 
   transpose(array: any[]) {
@@ -155,5 +156,16 @@ export class SimpleComponent implements OnInit {
     row.forEach((columnIndex, wordIndex) => {
       this.selectWord(columnIndex, wordIndex);
     });
+  }
+
+  loadCurrentGrid(): any {
+    const savedGrid = localStorage.getItem('grid');
+    if (savedGrid) {
+      this.grid = JSON.parse(savedGrid);
+    }
+  }
+
+  saveCurrentGrid(): void {
+    localStorage.setItem('grid', JSON.stringify(this.grid))
   }
 }
