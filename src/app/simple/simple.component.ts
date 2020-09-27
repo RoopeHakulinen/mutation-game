@@ -71,8 +71,8 @@ export class SimpleComponent implements OnInit {
   };
 
   grid: GridWithStatus = defaultGrid;
+  savedCombinations: { combinationKey: number[]; words: string[] }[] = [];
   private randomCombinations: number[][] = [];
-  private savedCombinations: { combinationKey: number[]; words: string[] }[] = [];
 
   constructor() {
   }
