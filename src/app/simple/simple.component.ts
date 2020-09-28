@@ -209,6 +209,6 @@ export class SimpleComponent implements OnInit {
   exportAsCsv(): void {
     const currentGridAsCsv = this.grid.columns.map((column, index) => `${column.map(item => item.word !== '' ? index + 1 : 'x').join('')},${column.map(item => item.word).join(',')}`).join('\n');
     const savedRowsAsCsv = this.savedCombinations.map(combination => `${combination.combinationKey.join('')},${combination.words.join(',')}`).join('\n');
-    download('mutation-game-saved-combinations.csv', `${currentGridAsCsv}\n\n${savedRowsAsCsv}`);
+    download('mutation-game-saved-mutations.csv', `${currentGridAsCsv}\n\n${savedRowsAsCsv}`);
   }
 }
