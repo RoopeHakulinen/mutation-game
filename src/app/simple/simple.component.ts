@@ -139,7 +139,10 @@ export class SimpleComponent implements OnInit {
 
   reset() {
     if (confirm('Are you sure?')) {
-      this.grid = defaultGrid;
+      this.grid.columns.forEach((column, columnIndex) => column.forEach((item, rowIndex) => {
+        item.selected = false;
+        item.word = defaultGrid.columns[columnIndex][rowIndex].word;
+      }));
     }
   }
 
@@ -152,6 +155,7 @@ export class SimpleComponent implements OnInit {
 
   toggleEdit() {
     this.toggles.isEditing = !this.toggles.isEditing;
+    this.toggles.isAutomaticModeEnabled = false;
     this.resetSelected();
     this.generateRandomCombinations();
     this.saveCurrentGrid();
