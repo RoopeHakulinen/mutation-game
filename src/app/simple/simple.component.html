@@ -40,7 +40,7 @@
           placeholder="Word"
           size="8"
           [(ngModel)]="column[rowIndex].word"
-          *ngIf="toggles.isEditing"/>
+          *ngIf="toggles.isEditing" />
         <span *ngIf="!toggles.isEditing">
           {{word.word.length ? word.word : '&nbsp;'}}
         </span>
@@ -96,7 +96,7 @@
   (change)="toggleEdit()">
   Edit mode
 </mat-slide-toggle>
-<br/>
+<br />
 <mat-slide-toggle
   [checked]="toggles.isAutomaticModeEnabled"
   (change)="toggles.isAutomaticModeEnabled = !toggles.isAutomaticModeEnabled"
@@ -105,9 +105,9 @@
 </mat-slide-toggle>
 
 <div class="current-mutation" *ngIf="!toggles.isEditing">
-  Current mutation: <br/>
+  Current mutation: <br />
   <b>{{getSelectedWords().join(' | ')}}</b>
-  <br/>
+  <br />
   <b>{{getSelectedIndexes().join('')}}</b>
 </div>
 
@@ -118,7 +118,9 @@
   <button mat-flat-button color="accent" (click)="exportAsCsv()" *ngIf="!toggles.isEditing">
     Review
   </button>
-  <div class="combination" *ngFor="let row of savedCombinations">
-    {{row.combinationKey.join('')}} - {{row.words.join(' | ')}}
+  <div class="combinations">
+    <div class="combination" *ngFor="let row of savedCombinations">
+      {{row.combinationKey.join('')}} - {{row.words.join(' | ')}}
+    </div>
   </div>
 </div>
