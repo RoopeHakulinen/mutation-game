@@ -1,27 +1,25 @@
 # MutationGame
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.1.
+## Snippet for adding the iframe embedding
+```javascript
+document.addEventListener("DOMContentLoaded", function(event) {
+    var iframe = document.createElement('iframe');
+    iframe.scrolling = 'no';
+    iframe.style.width = "100%";
+    iframe.style['min-height'] = "1040px";
+    iframe.style.border = "none";
+    iframe.src = 'https://roopehakulinen.github.io/mutation-game/';
 
-## Development server
+    var aTags = document.getElementsByTagName("h2");
+    var searchText = "Mutation Game App";
+    var found;
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+    for (var i = 0; i < aTags.length; i++) {
+        if (aTags[i].textContent == searchText) {
+            found = aTags[i];
+            break;
+        }
+    }
+    found.parentElement.appendChild(iframe);
+});
+```
