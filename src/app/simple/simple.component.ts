@@ -139,6 +139,8 @@ export class SimpleComponent implements OnInit {
 
   reset() {
     if (confirm('Are you sure?')) {
+      this.grid.columns.length = defaultGrid.columns.length;
+      this.grid.columns.forEach((column, index) => column.length = defaultGrid.columns[index].length);
       this.grid.columns.forEach((column, columnIndex) => column.forEach((item, rowIndex) => {
         item.selected = false;
         item.word = defaultGrid.columns[columnIndex][rowIndex].word;
