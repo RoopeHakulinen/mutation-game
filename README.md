@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     iframe.style.border = "none";
     iframe.src = 'https://roopehakulinen.github.io/mutation-game/';
 
-    var aTags = document.getElementsByTagName("h2");
-    var searchText = "Mutation Game App";
+    var aTags = document.getElementsByTagName("p");
+    var searchText = "Toggle the ‘Show Instructions’ button, if it’s the first time you’re playing the Mutation Game.";
     var found;
 
     for (var i = 0; i < aTags.length; i++) {
@@ -20,6 +20,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
             break;
         }
     }
-    found.parentElement.appendChild(iframe);
+    found.parentElement.insertBefore(iframe, found.nextSibling);
 });
 ```
