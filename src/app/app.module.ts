@@ -12,7 +12,8 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
 import { GridComponent } from './grid/grid.component';
-import { SimpleComponent } from './simple/simple.component';
+import { DialogContentExampleDialog, SimpleComponent } from './simple/simple.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 export const routes = [
   {
@@ -30,8 +31,10 @@ export const routes = [
     AppComponent,
     GameComponent,
     GridComponent,
-    SimpleComponent
+    SimpleComponent,
+    DialogContentExampleDialog
   ],
+  entryComponents: [DialogContentExampleDialog],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -42,7 +45,8 @@ export const routes = [
     RouterModule.forRoot(routes),
     MatInputModule,
     MatSlideToggleModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

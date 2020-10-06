@@ -1,5 +1,53 @@
 import { Component, OnInit } from '@angular/core';
 import { GridWithStatus } from '../grid';
+import { MatDialog } from '@angular/material/dialog';
+
+
+@Component({
+  selector: 'dialog-content-example-dialog',
+  template: `
+    <mat-dialog-content>
+      <div class="instructions">
+        <p style="text-align: left; margin-left: 20px;">Follow these 6 instructions & play the Mutation Game!</p>
+        <ul>
+          <li><b>Craft a Description:</b> toggle the edit mode, pick a meaningful string of 5 to 8 components that describe in
+            one sentence the object to mutate, and write these in column 1. A component can contain more than one word when
+            appropriate, e.g. ”for a short ride”, although one word is best. The empty button clears the grid on screen, and
+            the restore button shows our default example (the London taxi industry).
+          </li>
+          <li><b>Generate Alternative Components:</b> generate a grid of alternative components, with 2 to 4 alternatives for
+            each of the components in the initial description sentence. First add columns, write 5 or 6 alternative components
+            for each row, shrink back to your preferred 2 to 4, and then remove unnecessary columns when you’re done. A square
+            grid is best (i.e. without empty boxes). Toggle back the edit mode to secure your chosen grid.
+          </li>
+          <li><b>Pick Mutations & Generate Ideas:</b> a mutation is a sentence arrived at by selecting 1 component per row.
+            Each mutation gets a unique number, made by listing the column numbers of the components it contains (nb: the
+            mutation number of the initial description is a long string of “1”). Go through c. 50 mutations, spending 10 to 20
+            seconds per mutation, to trigger creative ideas. You can have more than one idea per mutation, and many mutations
+            can give rise to the same idea. Move on to a next mutation if drawing blank at any time.
+          </li>
+          <li><b>Choose Manual or Automatic mode:</b> in the manual mode, you have to construct each mutation yourself, by
+            intentionally selecting 1 component per row by hand. The automatic mode is more like a Las Vegas slot machine,
+            showing you a different randomly-generated mutation every time you press the random button. Automatic mode is a
+            lot a fun, and sometimes yield revolutionary ideas. Manual mode is smarter, and always trigger great evolutionary
+            ideas.
+          </li>
+          <li><b>Save and Review:</b> press the save button every time you see a mutation you like, and that mutation’s
+            details (words + number) will be stored in a CSV file. Press the review button to download the file, with all your
+            saved mutations. A new CSV file is restarted every time you edit a new grid.
+          </li>
+          <li><b>Package your Best Ideas:</b> summarize your best ideas in 2 to 4 words each, to convey them crisply and
+            clearly. Add the unique mutation number of the mutation that triggered the idea for future recollection.
+          </li>
+        </ul>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+  `,
+})
+export class DialogContentExampleDialog {}
 
 function download(filename, text) {
   var element = document.createElement('a');
@@ -74,7 +122,7 @@ export class SimpleComponent implements OnInit {
   savedCombinations: { combinationKey: number[]; words: string[] }[] = [];
   private randomCombinations: number[][] = [];
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -211,5 +259,13 @@ export class SimpleComponent implements OnInit {
     const currentGridAsCsv = this.grid.columns.map((column, index) => `${column.map(item => item.word !== '' ? index + 1 : 'x').join('')},${column.map(item => item.word).join(',')}`).join('\n');
     const savedRowsAsCsv = this.savedCombinations.map(combination => `${combination.combinationKey.join('')},${combination.words.join(',')}`).join('\n');
     download('mutation-game-saved-mutations.csv', `${currentGridAsCsv}\n\n${savedRowsAsCsv}`);
+  }
+
+  showInstructions(): void {
+    const dialogRef = this.dialog.open(DialogContentExampleDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
