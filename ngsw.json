@@ -1,18 +1,23 @@
 {
   "configVersion": 1,
+  "timestamp": 1625763459669,
   "index": "https://RoopeHakulinen.github.io/mutation-game/index.html",
   "assetGroups": [
     {
       "name": "app",
       "installMode": "prefetch",
       "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "urls": [
         "https://RoopeHakulinen.github.io/mutation-game/favicon.ico",
         "https://RoopeHakulinen.github.io/mutation-game/index.html",
-        "https://RoopeHakulinen.github.io/mutation-game/main.75551c5b32f0d3381ee0.js",
-        "https://RoopeHakulinen.github.io/mutation-game/polyfills.f6ae3e8b63939c618130.js",
-        "https://RoopeHakulinen.github.io/mutation-game/runtime.06daa30a2963fa413676.js",
-        "https://RoopeHakulinen.github.io/mutation-game/styles.ac5c92fdd0064eb7816a.css"
+        "https://RoopeHakulinen.github.io/mutation-game/main.e840e7c9b2b542aefb14.js",
+        "https://RoopeHakulinen.github.io/mutation-game/polyfills-es5.bc3c942169951c1a47d1.js",
+        "https://RoopeHakulinen.github.io/mutation-game/polyfills.7a50c52022a404855693.js",
+        "https://RoopeHakulinen.github.io/mutation-game/runtime.5a9f79d6bb6f51002010.js",
+        "https://RoopeHakulinen.github.io/mutation-game/styles.12ceaf12d949476044de.css"
       ],
       "patterns": []
     },
@@ -20,6 +25,9 @@
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "urls": [
         "https://RoopeHakulinen.github.io/mutation-game/assets/icons/icon-128x128.png",
         "https://RoopeHakulinen.github.io/mutation-game/assets/icons/icon-144x144.png",
@@ -44,11 +52,12 @@
     "https://RoopeHakulinen.github.io/mutation-game/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "https://RoopeHakulinen.github.io/mutation-game/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "https://RoopeHakulinen.github.io/mutation-game/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "https://RoopeHakulinen.github.io/mutation-game/index.html": "77620359a7544eeb5fff26da49ccc87baaba2a66",
-    "https://RoopeHakulinen.github.io/mutation-game/main.75551c5b32f0d3381ee0.js": "3b0b877aed6bc58dff9209359f2973a5a0bb9f1f",
-    "https://RoopeHakulinen.github.io/mutation-game/polyfills.f6ae3e8b63939c618130.js": "ef2035f0504b4f77eac510c33595c81a5d09e33f",
-    "https://RoopeHakulinen.github.io/mutation-game/runtime.06daa30a2963fa413676.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
-    "https://RoopeHakulinen.github.io/mutation-game/styles.ac5c92fdd0064eb7816a.css": "8e5f6cc6fe20f982aa11b6c8ef8663ad9bb277a4"
+    "https://RoopeHakulinen.github.io/mutation-game/index.html": "7388e65b96ed28a9722cae09e4463f947e4d6056",
+    "https://RoopeHakulinen.github.io/mutation-game/main.e840e7c9b2b542aefb14.js": "41c7b78a347529a700a19609a61c2792002f9fd4",
+    "https://RoopeHakulinen.github.io/mutation-game/polyfills-es5.bc3c942169951c1a47d1.js": "e3de7393e86ce652df5c99e7b7e6035142b67b0c",
+    "https://RoopeHakulinen.github.io/mutation-game/polyfills.7a50c52022a404855693.js": "966592568af79f88885012224e592902f6addbe5",
+    "https://RoopeHakulinen.github.io/mutation-game/runtime.5a9f79d6bb6f51002010.js": "81b8ffe4f7e4cb0f7e45cc73069daf39c73307fa",
+    "https://RoopeHakulinen.github.io/mutation-game/styles.12ceaf12d949476044de.css": "11af5ed22828d6c40270a4eac13021d1c0dda9cc"
   },
   "navigationUrls": [
     {
@@ -67,5 +76,6 @@
       "positive": false,
       "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
     }
-  ]
+  ],
+  "navigationRequestStrategy": "performance"
 }
