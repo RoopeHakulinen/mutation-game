@@ -3,5 +3,5 @@ export interface Grid {
 }
 
 export interface GridWithStatus {
-  columns: Array<{ word: string; selected: boolean; }[]>;
+  columns: { word: string; selected: boolean; }[][];
 }

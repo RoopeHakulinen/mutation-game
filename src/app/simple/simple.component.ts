@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GridWithStatus } from '../grid';
 import { MatDialog } from '@angular/material/dialog';
+import { HttpClient } from '@angular/common/http';
+import { delay } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -116,16 +119,20 @@ export class SimpleComponent implements OnInit {
     showInstructions: false,
     isEditing: false,
     isAutomaticModeEnabled: false,
+    isGenerationModeEnabled: false,
   };
 
   grid: GridWithStatus = defaultGrid;
   savedCombinations: { combinationKey: number[]; words: string[] }[] = [];
+  generatedCombinations: number[][] = [];
   private randomCombinations: number[][] = [];
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog, private httpClient: HttpClient) {
   }
 
   ngOnInit() {
+    // Only used to kick up the sleeping Heroku backend
+    this.makeRequestForGenerated('', 0).subscribe();
     this.loadCurrentGrid();
     this.generateRandomCombinations();
   }
@@ -231,6 +238,17 @@ export class SimpleComponent implements OnInit {
     });
   }
 
+  nextGenerated(): void {
+    if (this.generatedCombinations.length === 0) {
+      alert('No more mutations available');
+      return;
+    }
+    const row = this.generatedCombinations.shift();
+    row.forEach((columnIndex, wordIndex) => {
+      this.selectWord(columnIndex, wordIndex);
+    });
+  }
+
   loadCurrentGrid(): any {
     const savedGrid = localStorage.getItem('grid');
     if (savedGrid) {
@@ -267,5 +285,21 @@ export class SimpleComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  fetchGenerated(): void {
+    this.generatedCombinations = [];
+    const combinations = this.transpose(this.grid.columns).map(array => array.map(item => item.word).join(',').replace(',\n', '\n')).join('\n');
+    const distance = this.transpose(this.grid.columns).reduce((acc, row) => acc + row.length - 1, 0) / 2;
+    this.makeRequestForGenerated(combinations, distance)
+      .subscribe(response => this.generatedCombinations = eval(response.replaceAll('(', '[').replaceAll(')', ']')));
+  }
+
+  makeRequestForGenerated(combinations: string, distance: number): Observable<string> {
+    const host = 'https://mutation-game-backend.herokuapp.com/';
+    // Local dev:
+    // const host = 'http://localhost:8000/';
+    return this.httpClient.get(`${host}?combinations=${encodeURIComponent(combinations)}&distance=${distance}`,
+      { responseType: 'text' })
   }
 }

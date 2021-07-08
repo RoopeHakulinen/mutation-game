@@ -23,6 +23,11 @@
   <div class="generate-button-container" *ngIf="toggles.isAutomaticModeEnabled">
     <button (click)="pickRandom()" mat-flat-button style="position: absolute;margin-left: 20px;">Random</button>
   </div>
+  <div class="generate-button-container" *ngIf="toggles.isGenerationModeEnabled">
+    <div *ngIf="generatedCombinations.length > 0"><button (click)="nextGenerated()" mat-flat-button style="position: absolute;margin-left: 20px;">Next</button></div>
+    <div *ngIf="generatedCombinations.length === 0"><mat-progress-spinner></mat-progress-spinner></div>
+
+  </div>
 </div>
 
 <div *ngIf="toggles.isEditing">
@@ -72,9 +77,16 @@
 <br />
 <mat-slide-toggle
   [checked]="toggles.isAutomaticModeEnabled"
-  (change)="toggles.isAutomaticModeEnabled = !toggles.isAutomaticModeEnabled"
+  (change)="toggles.isAutomaticModeEnabled = !toggles.isAutomaticModeEnabled; toggles.isGenerationModeEnabled = false;"
   *ngIf="!toggles.isEditing">
   Random mode
+</mat-slide-toggle>
+<br />
+<mat-slide-toggle
+  [checked]="toggles.isGenerationModeEnabled"
+  (change)="toggles.isGenerationModeEnabled = !toggles.isGenerationModeEnabled; toggles.isAutomaticModeEnabled = false; fetchGenerated();"
+  *ngIf="!toggles.isEditing">
+  AI mode
 </mat-slide-toggle>
 
 <div class="current-mutation" *ngIf="!toggles.isEditing">
