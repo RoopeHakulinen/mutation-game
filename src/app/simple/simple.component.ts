@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GridWithStatus } from '../grid';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
-import { delay } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -296,9 +296,7 @@ export class SimpleComponent implements OnInit {
   }
 
   makeRequestForGenerated(combinations: string, distance: number): Observable<string> {
-    const host = 'https://mutation-game-backend.herokuapp.com/';
-    // Local dev:
-    // const host = 'http://localhost:8000/';
+    const host = environment.backendUrl;
     return this.httpClient.get(`${host}?combinations=${encodeURIComponent(combinations)}&distance=${distance}`,
       { responseType: 'text' })
   }
