@@ -289,7 +289,7 @@ export class SimpleComponent implements OnInit {
 
   fetchGenerated(): void {
     this.generatedCombinations = [];
-    const combinations = this.transpose(this.grid.columns).map(array => array.map(item => item.word).join(',').replace(',\n', '\n')).join('\n');
+    const combinations = this.transpose(this.grid.columns).map(array => array.map(item => item.word).join(',').replace(/,$/g, '')).join('\n');
     const distance = this.transpose(this.grid.columns).reduce((acc, row) => acc + row.length - 1, 0) / 2;
     this.makeRequestForGenerated(combinations, distance)
       .subscribe(response => this.generatedCombinations = eval(response.replaceAll('(', '[').replaceAll(')', ']')));
