@@ -24,8 +24,12 @@
     <button (click)="pickRandom()" mat-flat-button style="position: absolute;margin-left: 20px;">Random</button>
   </div>
   <div class="generate-button-container" *ngIf="toggles.isGenerationModeEnabled">
-    <div *ngIf="generatedCombinations.length > 0"><button (click)="nextGenerated()" mat-flat-button style="position: absolute;margin-left: 20px;">Next</button></div>
-    <div *ngIf="generatedCombinations.length === 0"><mat-progress-spinner></mat-progress-spinner></div>
+    <div *ngIf="generatedCombinations.length > 0">
+      <button (click)="nextGenerated()" mat-flat-button style="position: absolute;margin-left: 20px;">Next</button>
+    </div>
+    <div *ngIf="generatedCombinations.length === 0">
+      <mat-progress-spinner></mat-progress-spinner>
+    </div>
 
   </div>
 </div>
@@ -88,6 +92,14 @@
   *ngIf="!toggles.isEditing">
   AI mode
 </mat-slide-toggle>
+
+<div *ngIf="toggles.isGenerationModeEnabled" class="distance-fix-container">
+  <div class="labels">
+    <label class="min" style="margin-right: 50px;">Tight</label>
+    <label class="max">Wacky</label>
+  </div>
+  <mat-slider (valueChange)="distanceChanged()" [(ngModel)]="distanceFix" max="5" min="1"></mat-slider>
+</div>
 
 <div class="current-mutation" *ngIf="!toggles.isEditing">
   Current mutation: <br />

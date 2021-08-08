@@ -140,6 +140,7 @@ export class SimpleComponent implements OnInit {
   grid: GridWithStatus = defaultGrid;
   savedCombinations: { combinationKey: number[]; words: string[] }[] = [];
   generatedCombinations: number[][] = [];
+  distanceFix = 1;
   private randomCombinations: number[][] = [];
 
   constructor(private dialog: MatDialog, private httpClient: HttpClient) {
@@ -305,7 +306,7 @@ export class SimpleComponent implements OnInit {
   fetchGenerated(): void {
     this.generatedCombinations = [];
     const combinations = this.transpose(this.grid.columns).map(array => array.map(item => item.word).join(',').replace(/,$/g, '')).join('\n');
-    const distance = this.transpose(this.grid.columns).reduce((acc, row) => acc + row.length - 1, 0) / 2;
+    const distance = this.transpose(this.grid.columns).reduce((acc, row) => acc + row.length - 1, 0) / 2 - this.distanceFix;
     this.makeRequestForGenerated(combinations, distance)
       .subscribe(response => this.generatedCombinations = eval(response.replaceAll('(', '[').replaceAll(')', ']')));
   }
@@ -314,5 +315,9 @@ export class SimpleComponent implements OnInit {
     const host = environment.backendUrl;
     return this.httpClient.get(`${host}?combinations=${encodeURIComponent(combinations)}&distance=${distance}`,
       { responseType: 'text' })
+  }
+
+  distanceChanged(): void {
+    this.fetchGenerated();
   }
 }

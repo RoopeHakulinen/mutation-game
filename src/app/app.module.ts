@@ -18,6 +18,7 @@ import { DialogContentExampleDialog, SimpleComponent } from './simple/simple.com
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSliderModule } from '@angular/material/slider';
 
 export const routes = [
   {
@@ -51,6 +52,7 @@ export const routes = [
     MatSlideToggleModule,
     MatButtonModule,
     MatDialogModule,
+    MatSliderModule,
     HttpClientModule,
     MatProgressSpinnerModule,
   ],

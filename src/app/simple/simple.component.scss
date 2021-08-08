@@ -46,3 +46,8 @@
   height: 240px;
   overflow-y: scroll;
 }
+
+:host ::ng-deep mat-slider .mat-slider-thumb {
+  border-color: transparent !important;
+  background-color: #ff4081 !important;
+}
