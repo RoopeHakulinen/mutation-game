@@ -27,8 +27,8 @@
     <div *ngIf="generatedCombinations.length > 0">
       <button (click)="nextGenerated()" mat-flat-button style="position: absolute;margin-left: 20px;">Next</button>
     </div>
-    <div *ngIf="generatedCombinations.length === 0">
-      <mat-progress-spinner></mat-progress-spinner>
+    <div *ngIf="generatedCombinations.length === 0" style="padding: 20px;">
+      <mat-spinner color="accent"></mat-spinner>
     </div>
 
   </div>

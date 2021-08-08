@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { delay } from 'rxjs/operators';
 
 
 @Component({
@@ -308,6 +309,7 @@ export class SimpleComponent implements OnInit {
     const combinations = this.transpose(this.grid.columns).map(array => array.map(item => item.word).join(',').replace(/,$/g, '')).join('\n');
     const distance = this.transpose(this.grid.columns).reduce((acc, row) => acc + row.length - 1, 0) / 2 - this.distanceFix;
     this.makeRequestForGenerated(combinations, distance)
+      .pipe(delay(500))
       .subscribe(response => this.generatedCombinations = eval(response.replaceAll('(', '[').replaceAll(')', ']')));
   }
 
