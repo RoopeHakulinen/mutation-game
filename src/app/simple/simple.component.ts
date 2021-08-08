@@ -44,8 +44,8 @@ import { environment } from '../../environments/environment';
             default mode. The random mode is more like a Las Vegas slot machine, showing you a different
             randomly-generated mutation every time you press the “random” button. Random mode is a lot a fun, and
             sometimes yields revolutionary ideas. Manual mode is smarter, and always trigger great evolutionary ideas.
-            AI mode is a half-way house, pre-selecting for you 50 mutations that are likely to contain a mlix of
-            evolutionary & revolutionary
+            AI mode is a half-way house, pre-selecting for you 50 mutations that are likely to contain a mix of
+            evolutionary & revolutionary.
           </li>
           <li><b>Save and Review:</b> press the save button every time you see a mutation you like, and that mutation’s
             details (words + number) will be stored in a CSV file. Press the review button to download the file, with
