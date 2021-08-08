@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1628412335893,
+  "timestamp": 1628412859291,
   "index": "https://RoopeHakulinen.github.io/mutation-game/index.html",
   "assetGroups": [
     {
@@ -13,8 +13,8 @@
       "urls": [
         "https://RoopeHakulinen.github.io/mutation-game/favicon.ico",
         "https://RoopeHakulinen.github.io/mutation-game/index.html",
-        "https://RoopeHakulinen.github.io/mutation-game/main.310883c70d7b354cf20d.js",
-        "https://RoopeHakulinen.github.io/mutation-game/polyfills-es5.bc3c942169951c1a47d1.js",
+        "https://RoopeHakulinen.github.io/mutation-game/main.e9b6d648b4e32a14e09f.js",
+        "https://RoopeHakulinen.github.io/mutation-game/polyfills-es5.8ef2a3b63e9e29544851.js",
         "https://RoopeHakulinen.github.io/mutation-game/polyfills.7a50c52022a404855693.js",
         "https://RoopeHakulinen.github.io/mutation-game/runtime.5a9f79d6bb6f51002010.js",
         "https://RoopeHakulinen.github.io/mutation-game/styles.12ceaf12d949476044de.css"
@@ -52,9 +52,9 @@
     "https://RoopeHakulinen.github.io/mutation-game/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "https://RoopeHakulinen.github.io/mutation-game/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "https://RoopeHakulinen.github.io/mutation-game/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "https://RoopeHakulinen.github.io/mutation-game/index.html": "bb0930ed13b1f0bfd19a20263d0dbbe707ae0ff7",
-    "https://RoopeHakulinen.github.io/mutation-game/main.310883c70d7b354cf20d.js": "7c1d71a1094cc70b4e335e1d5cc9faf035ed43b9",
-    "https://RoopeHakulinen.github.io/mutation-game/polyfills-es5.bc3c942169951c1a47d1.js": "e3de7393e86ce652df5c99e7b7e6035142b67b0c",
+    "https://RoopeHakulinen.github.io/mutation-game/index.html": "28f3385205a3166e691a814f97fc18b498dce681",
+    "https://RoopeHakulinen.github.io/mutation-game/main.e9b6d648b4e32a14e09f.js": "3d8b9c3729311ebaff0431843dd1a66563a2d46b",
+    "https://RoopeHakulinen.github.io/mutation-game/polyfills-es5.8ef2a3b63e9e29544851.js": "6c5c8aa4ad4861db466ee6febe6ff40e8b82ae74",
     "https://RoopeHakulinen.github.io/mutation-game/polyfills.7a50c52022a404855693.js": "966592568af79f88885012224e592902f6addbe5",
     "https://RoopeHakulinen.github.io/mutation-game/runtime.5a9f79d6bb6f51002010.js": "81b8ffe4f7e4cb0f7e45cc73069daf39c73307fa",
     "https://RoopeHakulinen.github.io/mutation-game/styles.12ceaf12d949476044de.css": "11af5ed22828d6c40270a4eac13021d1c0dda9cc"
