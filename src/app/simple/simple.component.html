@@ -95,8 +95,8 @@
 
 <div *ngIf="toggles.isGenerationModeEnabled" class="distance-fix-container">
   <div class="labels">
-    <label class="min" style="margin-right: 50px;">Tight</label>
-    <label class="max">Wacky</label>
+    <label class="min" style="margin-right: 50px;">Wacky</label>
+    <label class="max">Tight</label>
   </div>
   <mat-slider (valueChange)="distanceChanged()" [(ngModel)]="distanceFix" max="5" min="1"></mat-slider>
 </div>
