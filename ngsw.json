@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1628750695492,
+  "timestamp": 1628763718110,
   "index": "https://RoopeHakulinen.github.io/mutation-game/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "https://RoopeHakulinen.github.io/mutation-game/favicon.ico",
         "https://RoopeHakulinen.github.io/mutation-game/index.html",
-        "https://RoopeHakulinen.github.io/mutation-game/main.333d3c6a24d53a218b33.js",
+        "https://RoopeHakulinen.github.io/mutation-game/main.8db7389049bf5e3bd95a.js",
         "https://RoopeHakulinen.github.io/mutation-game/polyfills-es5.8ef2a3b63e9e29544851.js",
         "https://RoopeHakulinen.github.io/mutation-game/polyfills.7a50c52022a404855693.js",
         "https://RoopeHakulinen.github.io/mutation-game/runtime.5a9f79d6bb6f51002010.js",
@@ -52,8 +52,8 @@
     "https://RoopeHakulinen.github.io/mutation-game/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "https://RoopeHakulinen.github.io/mutation-game/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "https://RoopeHakulinen.github.io/mutation-game/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "https://RoopeHakulinen.github.io/mutation-game/index.html": "07b752b9fa2cb279d3c211039cbb00a84fc835cd",
-    "https://RoopeHakulinen.github.io/mutation-game/main.333d3c6a24d53a218b33.js": "4d48488160d6e87318732f44c0dcd4946409a7fb",
+    "https://RoopeHakulinen.github.io/mutation-game/index.html": "be91e41b94793c21bb96665c559959df78c5746f",
+    "https://RoopeHakulinen.github.io/mutation-game/main.8db7389049bf5e3bd95a.js": "ffbc70ff0164cf5af2e9b3558d5068fdf90aab93",
     "https://RoopeHakulinen.github.io/mutation-game/polyfills-es5.8ef2a3b63e9e29544851.js": "6c5c8aa4ad4861db466ee6febe6ff40e8b82ae74",
     "https://RoopeHakulinen.github.io/mutation-game/polyfills.7a50c52022a404855693.js": "966592568af79f88885012224e592902f6addbe5",
     "https://RoopeHakulinen.github.io/mutation-game/runtime.5a9f79d6bb6f51002010.js": "81b8ffe4f7e4cb0f7e45cc73069daf39c73307fa",
