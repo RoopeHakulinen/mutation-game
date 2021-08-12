@@ -307,7 +307,7 @@ export class SimpleComponent implements OnInit {
   fetchGenerated(): void {
     this.generatedCombinations = [];
     const combinations = this.transpose(this.grid.columns).map(array => array.map(item => item.word).join(',').replace(/,$/g, '')).join('\n');
-    const distance = this.transpose(this.grid.columns).reduce((acc, row) => acc + row.length - 1, 0) / 2 - this.distanceFix;
+    const distance = this.transpose(this.grid.columns).reduce((acc, row) => acc + row.length - 1, 0) / 2 - (6 - this.distanceFix);
     this.makeRequestForGenerated(combinations, distance)
       .pipe(delay(500))
       .subscribe(response => this.generatedCombinations = eval(response.replaceAll('(', '[').replaceAll(')', ']')));
